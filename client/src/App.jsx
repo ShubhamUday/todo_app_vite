@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./App.css";
-import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import { useSelector } from "react-redux";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   const { loading } = useSelector((state) => state.loader);
@@ -18,7 +18,7 @@ function App() {
           </div>
         )}
         <Routes>
-          <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+          <Route path="/" element={<ProtectedRoute><Dashboard/></ProtectedRoute>}/>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>

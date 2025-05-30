@@ -21,36 +21,18 @@ function ProtectedRoute({ children }) {
 
   const navItems = [
     {
-      label: <Link to="/">Home</Link>,
-      icon: <HomeOutlined />,
-      key: "home",
-    },
-    {
       label: `${user ? user.name : " "}`,
       icon: <UserOutlined />,
       key: "user",
-      children: [
-        {
-          label: (
-            <span
-              onClick={() =>
-                user.isAdmin ? navigate("/admin") : navigate("/profile")
-              }
-            >
-              My Profile
-            </span>
-          ),
-          icon: <ProfileOutlined />,
-        },
-        {
-          label: (
-            <Link to="/login" onClick={() => localStorage.removeItem("token")}>
-              Logout
-            </Link>
-          ),
-          icon: <LoginOutlined />,
-        },
-      ],
+    },
+    {
+      label: (
+        <Link to="/login" onClick={() => localStorage.removeItem("token")}>
+          Logout
+        </Link>
+      ),
+      icon: <LoginOutlined />,
+      key: "logout",
     },
   ];
 
@@ -58,14 +40,9 @@ function ProtectedRoute({ children }) {
     try {
       dispatch(showLoading());
       const response = await getCurrentUser();
-      dispatch(hideLoading());
       if (response.success) {
         dispatch(setUser(response.data));
-
-        if (!response.data.isAdmin) {
-          message.error("You are not authorized for this page");
-          navigate("/");
-        }
+        dispatch(hideLoading());
       } else {
         dispatch(setUser(null));
         message.error(response.message);
