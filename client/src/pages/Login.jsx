@@ -34,7 +34,7 @@ function Login() {
       <header className="App-header">
         <main className="main-area mw-500 text-center px-3">
           <section className="left-section">
-            <h1>Welcome back to ToDo_App</h1>
+            <h1>Welcome back to ToDo App</h1>
           </section>
           <section className="right-section">
             <Form layout="vertical" onFinish={submitForm}>

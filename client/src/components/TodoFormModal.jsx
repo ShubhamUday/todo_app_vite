@@ -57,6 +57,7 @@ function TodoFormModal({
   return (
     <>
       <Modal
+      className="custom-modal"
         centered
         title={formType === "add" ? "Add Todo" : "Edit Todo"}
         open={isModalOpen}
