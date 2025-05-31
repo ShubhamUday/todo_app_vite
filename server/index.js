@@ -24,13 +24,13 @@ mongoose
   .catch((err) => console.log(err));
 
 const authRoute = require("./routes/authRoutes");
-const userRoute = require("./routes/userRoutes");
+const todoRoute = require("./routes/todoRoutes");
 
 app.use(express.json());
 app.use(express.urlencoded());
 
-app.use("/api/v1/auth", authRoute);
-app.use("/api/v1/users", userRoute);
+app.use("/api/auth", authRoute);
+app.use("/api/todo", todoRoute);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

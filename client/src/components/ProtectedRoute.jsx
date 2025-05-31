@@ -15,7 +15,7 @@ import {
 
 function ProtectedRoute({ children }) {
   const { user } = useSelector((state) => state.user);
-  console.log("StateUser", user);
+  // console.log("StateUser", user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

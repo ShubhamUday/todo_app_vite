@@ -1,7 +1,9 @@
-import { Button, Col, DatePicker, Form, Input, Modal, Row, Switch } from "antd";
+import { Button, Col, Form, Input, message, Modal, Row, Switch } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addTodo, updateTodo } from "../apicalls/todos";
+import { hideLoading, showLoading } from "../redux/loadersSlice";
 
 function TodoFormModal({
   isModalOpen,
@@ -11,6 +13,7 @@ function TodoFormModal({
   setSelectedTodo,
   getData,
 }) {
+  const { user } = useSelector((state) => state.user);
   const [isDueDateEnabled, setIseDueDateEnable] = useState(false);
   const dispatch = useDispatch();
 
@@ -21,16 +24,17 @@ function TodoFormModal({
 
   const onFinish = async (values) => {
     let response = null;
+    console.log("value", values);
     try {
       dispatch(showLoading());
       if (formType === "add") {
-        // values.role = "owner";
-        // response = await addOwner(values);
+        values.userId = user._id;
+        response = await addTodo(values);
       } else {
-        // response = await updateOwner({
-        //   ...values,
-        //   ownerId: selectedOwner._id,
-        // });
+        response = await updateTodo({
+          ...values,
+          todoId: selectedTodo._id,
+        });
       }
       if (response.success) {
         getData();
@@ -72,41 +76,42 @@ function TodoFormModal({
             <Col span={24}>
               <Form.Item
                 htmlFor="title"
-                name="Title"
+                name="title"
                 rules={[{ required: true }]}
               >
-                <Input id="title" type="text" placeholder="Title"></Input>
+                <Input id="title" type="text" placeholder="Title" />
               </Form.Item>
             </Col>
             <Col span={24}>
               <Form.Item
                 htmlFor="task"
-                name="Task"
+                name="task"
                 rules={[{ required: true }]}
               >
                 <TextArea id="task" placeholder="Task" />
               </Form.Item>
             </Col>
             <Col span={6}>
-              <Form.Item
-                label="Set Due Date"
-                name="dueDate"
-                rules={[{ message: "Please select a date" }]}
-              >
-                <Switch onChange={onChange}></Switch>
+              <Form.Item label="Set Due Date" valuePropName="checked">
+                <Switch onChange={onChange} />
               </Form.Item>
             </Col>
-            <Form.Item
-              label="Due Date"
-              name="dueDate"
-              rules={[
-                { required: isDueDateEnabled, message: "Please select a date" },
-              ]}
-            >
-              <Col span={12}>
-                <DatePicker disabled={!isDueDateEnabled} />
-              </Col>
-            </Form.Item>
+            <Col span={12}>
+              <Form.Item
+                label="Due Date"
+                name="dueDate"
+                htmlFor="dueDate"
+                rules={[
+                  {
+                    required: isDueDateEnabled,
+                    message: "Please select a date",
+                  },
+                ]}
+              >
+                {/* <DatePicker disabled={!isDueDateEnabled} /> */}
+                <Input id="dueDate" type="date" disabled={!isDueDateEnabled} />
+              </Form.Item>
+            </Col>
           </Row>
 
           <Row gutter={16}>
