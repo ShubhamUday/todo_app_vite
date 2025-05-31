@@ -34,9 +34,7 @@ const getAllTodo = async (req, res) => {
 
 const updateTodo = async (req, res) => {
   try {
-    console.log("update route back", req.body);
     await TodoModel.findByIdAndUpdate(req.body.todoId, req.body);
-
     res.send({
       success: true,
       message: "Todo updated successfully",
@@ -51,9 +49,7 @@ const updateTodo = async (req, res) => {
 
 const deleteTodo = async (req, res) => {
   try {
-    console.log(req.body);
     const todo = await TodoModel.findById(req.body.todoId);
-
     if (!todo) {
       return res.status(404).json({ message: "Todo not found" });
     }
@@ -73,9 +69,7 @@ const deleteTodo = async (req, res) => {
 
 const getAllTodoByUser = async (req, res) => {
   try {
-    // console.log('todocontroller', req.body)
     const allTodo = await TodoModel.find({ userId: req.body.user });
-    // console.log('resp find allTodo', allTodo)
     res.send({
       success: true,
       message: "All todo's by user fetched successfully",
