@@ -21,11 +21,6 @@ function ProtectedRoute({ children }) {
 
   const navItems = [
     {
-      label: `${user ? user.name : " "}`,
-      icon: <UserOutlined />,
-      key: "user",
-    },
-    {
       label: (
         <Link to="/login" onClick={() => localStorage.removeItem("token")}>
           Logout
@@ -84,6 +79,15 @@ function ProtectedRoute({ children }) {
             <h3 className="demo-logo text-black m-0" style={{ color: "black" }}>
               ToDo App
             </h3>
+            <p
+              style={{
+                color: "black",
+                position: "absolute",
+                right: 160,
+              }}
+            >
+              <UserOutlined /> {user?.name}
+            </p>
             <Menu theme="light" mode="horizontal" items={navItems}></Menu>
           </Header>
           <div style={{ padding: 24, minHeight: 380, background: "#fff" }}>
