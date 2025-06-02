@@ -10,7 +10,7 @@ function Register() {
   const submitForm = async (value) => {
     try {
       const response = await RegisterUser(value);
-      console.log(response);
+      // console.log(response);
       if (response.success) {
         message.success(response.message);
         navigate("/login");

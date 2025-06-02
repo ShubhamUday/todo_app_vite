@@ -9,7 +9,7 @@ function Login() {
   const submitForm = async (value) => {
     try {
       const response = await LoginUser(value);
-      console.log(response);
+      // console.log(response);
 
       if (response.success) {
         message.success(response.message);

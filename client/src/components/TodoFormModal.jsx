@@ -24,7 +24,7 @@ function TodoFormModal({
 
   const onFinish = async (values) => {
     let response = null;
-    console.log("value", values);
+    // console.log("value", values);
     try {
       dispatch(showLoading());
       if (formType === "add") {

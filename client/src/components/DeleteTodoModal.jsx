@@ -19,7 +19,7 @@ function DeleteTodoModal({
 
       const response = await deleteTodo({ data: { todoId } });
 
-      console.log(todoId, response);
+      // console.log(todoId, response);
       if (response.success) {
         message.success(response.message);
         getData();

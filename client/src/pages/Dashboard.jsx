@@ -24,7 +24,7 @@ function Dashboard() {
     try {
       dispatch(showLoading());
       const response = await getAllTodoByOwner({ user: user._id });
-      console.log("allTodo response", response);
+      // console.log("allTodo response", response);
 
       if (response.success) {
         const allTodos = response.data;
@@ -33,7 +33,7 @@ function Dashboard() {
             return { ...item, key: `todo${item._id}` };
           })
         );
-        console.log("Todo's", todos);
+        // console.log("Todo's", todos);
       } else {
         message.error(response.message);
       }
@@ -51,7 +51,7 @@ function Dashboard() {
   };
 
   const handleComplete = async (id, isChecked) => {
-    console.log("handleCheckbox", id, isChecked);
+    // console.log("handleCheckbox", id, isChecked);
     try {
       const response = await updateTodo({
         todoId: id,
@@ -159,7 +159,7 @@ function Dashboard() {
                   extra={
                     data.dueDate && (
                       <Tag color="magenta" style={{ margin: 8 }}>
-                        {moment(data?.dueDate).format("DD-MM-YYYY")}
+                        Due Date: {moment(data?.dueDate).format("DD-MM-YYYY")}
                       </Tag>
                     )
                   }
