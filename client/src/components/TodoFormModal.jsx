@@ -57,7 +57,7 @@ function TodoFormModal({
   return (
     <>
       <Modal
-      className="custom-modal"
+        className="custom-modal"
         centered
         title={formType === "add" ? "Add Todo" : "Edit Todo"}
         open={isModalOpen}
@@ -66,7 +66,7 @@ function TodoFormModal({
         footer={null}
       >
         <Form
-          size="small"
+          // size="small"
           wrapperCol={{ span: 24 }}
           layout="horizontal"
           style={{ width: "100%" }}
