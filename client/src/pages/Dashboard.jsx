@@ -1,7 +1,19 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
-import { Card, Checkbox, Col, Divider, Flex, FloatButton, Input, Layout, message, Radio, Tag } from "antd";
+import {
+  Card,
+  Checkbox,
+  Col,
+  Divider,
+  Flex,
+  FloatButton,
+  Input,
+  Layout,
+  message,
+  Radio,
+  Tag,
+} from "antd";
 import TodoFormModal from "../components/TodoFormModal";
 import { hideLoading, showLoading } from "../redux/loadersSlice";
 import { getAllTodoByOwner, updateTodo } from "../apicalls/todos";
@@ -220,14 +232,6 @@ function Dashboard() {
               setSelectedTodo={setSelectedTodo}
               getData={getData}
             />
-
-            // <DeletePropertyModal
-            //   isDeleteModalOpen={isDeleteModalOpen}
-            //   selectedProperty={selectedProperty}
-            //   setIsDeleteModalOpen={setIsDeleteModalOpen}
-            //   setSelectedProperty={setSelectedProperty}
-            //   getData={getData}
-            // />
           )}
         </Layout>
       </Flex>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { hideLoading, showLoading } from "../redux/loadersSlice";
 import { getCurrentUser } from "../apicalls/users";
@@ -6,12 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { setUser } from "../redux/userSlice";
 import { Layout, Menu, message } from "antd";
 import { Header } from "antd/es/layout/layout";
-import {
-  HomeOutlined,
-  LoginOutlined,
-  ProfileOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+import { LoginOutlined, UserOutlined } from "@ant-design/icons";
 
 function ProtectedRoute({ children }) {
   const { user } = useSelector((state) => state.user);

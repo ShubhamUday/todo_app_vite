@@ -10,7 +10,7 @@ const PORT = 5019;
 app.use(
   cors({
     origin: [
-      "http://localhost:5173",
+      "http://localhost:5174",
       "https://leafy-gnome-cb85aa.netlify.app",
     ], // your frontend URL
     methods: ["GET", "POST", "PUT", "DELETE"],
